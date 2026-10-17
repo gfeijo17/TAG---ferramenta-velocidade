@@ -28,7 +28,7 @@ st.markdown("""
         margin-bottom: 5px;
     }
 
-    /* Caixa com nome da Ferramenta/Rede/GFS/INFO */
+    /* Caixa com nome da Ferramenta/Rede */
     .caixa-rede { 
         font-size: 22px !important; 
         font-weight: bold; 
@@ -73,9 +73,9 @@ st.markdown("""
 # 1. Cabeçalho com o nome
 st.markdown("<p class='titulo-principal'>GFS Info</p>", unsafe_allow_html=True)
 
-# 2. Leitura da URL
+# 2. Leitura da URL (com nome padrão atualizado para "Ferramenta Redes GFS Info")
 query_params = st.query_params
-ssid = query_params.get("ssid", "Ferramenta Redes")
+ssid = query_params.get("ssid", "Ferramenta Redes GFS Info")
 senha = query_params.get("senha", "")
 
 # Exibição da caixa com o nome da rede
