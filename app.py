@@ -42,6 +42,15 @@ st.markdown("""
         border: 1px solid #D7CCC8;
     }
 
+    /* Texto da Senha em fonte menor */
+    .texto-senha {
+        font-size: 16px !important;
+        color: #5D4037;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 500;
+    }
+
     /* Estilização das Abas para combinar com a paleta */
     button[data-baseweb="tab"] {
         color: #5D4037 !important;
@@ -61,7 +70,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 1. Cabeçalho com o nome atualizado
+# 1. Cabeçalho com o nome
 st.markdown("<p class='titulo-principal'>GFS Info</p>", unsafe_allow_html=True)
 
 # 2. Leitura da URL
@@ -69,14 +78,14 @@ query_params = st.query_params
 ssid = query_params.get("ssid", "Ferramenta Redes")
 senha = query_params.get("senha", "")
 
-# Exibição do texto "Ferramenta Redes" (ou nome da rede carregada)
+# Exibição da caixa com o nome da rede
 st.markdown(f"<div class='caixa-rede'>{ssid}</div>", unsafe_allow_html=True)
 
-# 3. Abas com os nomes atualizados
+# 3. Abas
 aba_qr, aba_speed = st.tabs(["Rede", "Velocidade"])
 
 with aba_qr:
-    # Subtítulo atualizado
+    # Subtítulo
     st.markdown("<h3 style='margin-bottom: 20px;'>Para conectar na rede escaneie aqui!!</h3>", unsafe_allow_html=True)
     
     # Geração do QR Code
@@ -90,10 +99,13 @@ with aba_qr:
     buf = BytesIO()
     img.save(buf, format="PNG")
     
-    # Exibição centralizada do QR Code (sem legenda/caption e sem campo de senha)
+    # Exibição centralizada do QR Code
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         st.image(buf.getvalue(), use_container_width=True)
+        # Exibe apenas a senha abaixo do QR Code em fonte menor se houver uma senha cadastrada
+        if senha:
+            st.markdown(f"<p class='texto-senha'>Senha: <strong>{senha}</strong></p>", unsafe_allow_html=True)
 
 with aba_speed:
     st.markdown("<h3 style='margin-bottom: 15px;'>Medidor de Velocidade</h3>", unsafe_allow_html=True)
