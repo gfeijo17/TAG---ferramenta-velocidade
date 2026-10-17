@@ -28,7 +28,7 @@ st.markdown("""
         margin-bottom: 5px;
     }
 
-    /* Caixa com nome da Ferramenta/Rede */
+    /* Caixa com nome da Ferramenta/Rede/GFS/INFO */
     .caixa-rede { 
         font-size: 22px !important; 
         font-weight: bold; 
